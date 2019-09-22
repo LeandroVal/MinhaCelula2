@@ -31,6 +31,9 @@
             </div>
         </div>
     </nav>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -39,12 +42,27 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     @*<script src="~/Scripts/popper.min.js"></script>*@
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     @*<script src="~/Scripts/main.js"></script>*@
     <script src="~/Scripts/waitMe.min.js"></script>
     <script src="~/Scripts/alertify.min.js"></script>
+
+    <script>
+        function ProgressBar() {
+            //StopScroll();
+            $('body').waitMe({
+                effect: 'ios',
+                text: 'Quase Pronto...',
+                color: '#007bff'
+            });
+        };
+        function StopProgressBar() {
+            //StartScroll();
+            $('body').waitMe('hide');
+        };
+    </script>
 
 
     @Scripts.Render("~/Scripts")

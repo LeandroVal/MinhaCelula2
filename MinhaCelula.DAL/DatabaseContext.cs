@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MinhaCelula.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -19,5 +20,7 @@ namespace MinhaCelula.DAL
             Database.SetInitializer<DatabaseContext>(null);
             base.OnModelCreating(modelBuilder);
         }
+
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }

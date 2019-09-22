@@ -47,12 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="UsuarioBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MinhaCelula.DAL\MinhaCelula.DAL.csproj">
+      <Project>{f516ea27-ae58-45c0-a251-5bf747d64a1c}</Project>
+      <Name>MinhaCelula.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MinhaCelula.Model\MinhaCelula.Model.csproj">
+      <Project>{97368ab7-3753-4a04-a3b1-9bc72bbf0a38}</Project>
+      <Name>MinhaCelula.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,20 @@
+﻿@using MinhaCelula.Model
+@model Usuario
+@{
+    Layout = null;
+    
+}
+
+
+<tr id="@Model.UsuarioId">
+    <th scope="row">
+        <i class="material-icons">delete</i>
+        <i class="material-icons">edit</i>
+    </th>
+    <th scope="row">@Model.UsuarioId</th>
+    <td>@ViewBag.Usuario</td>
+
+    <td>@Model.UserName</td>
+
+</tr>
+
