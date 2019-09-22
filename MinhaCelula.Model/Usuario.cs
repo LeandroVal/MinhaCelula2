@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MinhaCelula.Model;
 
 namespace MinhaCelula.Model
 {
@@ -15,6 +16,9 @@ namespace MinhaCelula.Model
         public int UsuarioId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public int PessoaId { get; set; }
+        [ForeignKey("PessoaId")]
+        public virtual Pessoa UsuarioPessoa { get; set; }
 
     }
 }

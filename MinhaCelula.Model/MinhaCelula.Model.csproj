@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Celula.cs" />
+    <Compile Include="Endereco.cs" />
+    <Compile Include="Frequencia.cs" />
+    <Compile Include="Pessoa.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
