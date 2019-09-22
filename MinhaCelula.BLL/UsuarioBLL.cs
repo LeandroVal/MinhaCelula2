@@ -10,9 +10,14 @@ namespace MinhaCelula.BLL
 {
     public class UsuarioBLL
     {
-        public Usuario NovoUsuario(ref string email)
+        public void NovoUsuario(Usuario Us)
         {
-            return new UsuarioDAL().NovoUsuario(ref email);
+            new UsuarioDAL().NovoUsuario(Us);
+        }
+
+        public IEnumerable<Usuario> GetAllUsers()
+        {
+            return new UsuarioDAL().GetAllUsers();
         }
     }
 }

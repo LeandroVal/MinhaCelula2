@@ -1,20 +1,25 @@
 ﻿@using MinhaCelula.Model
-@model Usuario
+@model IEnumerable<Usuario>
 @{
-    Layout = null;
-    
+                /**/
+
+                Layout = null;
+
 }
 
-
-<tr id="@Model.UsuarioId">
+@foreach (Usuario Us in Model)
+{
+<tr id="@Us.UsuarioId">
     <th scope="row">
         <i class="material-icons">delete</i>
         <i class="material-icons">edit</i>
     </th>
-    <th scope="row">@Model.UsuarioId</th>
-    <td>@ViewBag.Usuario</td>
-
-    <td>@Model.UserName</td>
-
+    <th scope="row">@Us.UsuarioId</th>
+    <td>@Us.UserName</td>
+    <td>@Us.Email</td>
+    <td>@Us.Status</td>
 </tr>
+
+}
+
 

@@ -9,15 +9,11 @@ namespace MinhaCelula.DAL.DAL
 {
     public class UsuarioDAL
     {
-        public Usuario NovoUsuario(ref string email)
+        public void NovoUsuario(Usuario Us)
         {
             using (DatabaseContext contexto = new DatabaseContext())
             {
-                Usuario Us = new Usuario()
-                {
-                    Status = UserStatus.PrimeiroAcesso,
-                    UserName = email                    
-                };
+                Us.Status = UserStatus.PrimeiroAcesso;
 
                 try
                 {
@@ -26,11 +22,15 @@ namespace MinhaCelula.DAL.DAL
                 }
                 catch(Exception ex)
                 {
-                    email = ex.Message;
+                    Us.MsgErro = ex.Message;
                 }
-
-                return Us;
             }
+        }
+
+        public IEnumerable<Usuario> GetAllUsers()
+        {
+            DatabaseContext Contexto = new DatabaseContext();
+            return Contexto.Usuarios;
         }
     }
 }

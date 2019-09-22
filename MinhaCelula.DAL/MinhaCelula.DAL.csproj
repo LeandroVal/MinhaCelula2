@@ -49,13 +49,9 @@
   <ItemGroup>
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Migrations\201909221507119_First.cs" />
-    <Compile Include="Migrations\201909221507119_First.Designer.cs">
-      <DependentUpon>201909221507119_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909221536115_Second.cs" />
-    <Compile Include="Migrations\201909221536115_Second.Designer.cs">
-      <DependentUpon>201909221536115_Second.cs</DependentUpon>
+    <Compile Include="Migrations\201909221820150_Tirth.cs" />
+    <Compile Include="Migrations\201909221820150_Tirth.Designer.cs">
+      <DependentUpon>201909221820150_Tirth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,11 +67,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909221507119_First.resx">
-      <DependentUpon>201909221507119_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909221536115_Second.resx">
-      <DependentUpon>201909221536115_Second.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909221820150_Tirth.resx">
+      <DependentUpon>201909221820150_Tirth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
