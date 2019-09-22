@@ -207,6 +207,19 @@
   <ItemGroup>
     <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MinhaCelula.BLL\MinhaCelula.BLL.csproj">
+      <Project>{1382c293-a7b2-4845-ae67-88cff59f155f}</Project>
+      <Name>MinhaCelula.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MinhaCelula.Model\MinhaCelula.Model.csproj">
+      <Project>{97368ab7-3753-4a04-a3b1-9bc72bbf0a38}</Project>
+      <Name>MinhaCelula.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Users\_TuplaUsuario.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

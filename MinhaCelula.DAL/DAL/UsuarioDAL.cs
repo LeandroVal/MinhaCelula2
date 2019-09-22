@@ -9,11 +9,27 @@ namespace MinhaCelula.DAL.DAL
 {
     public class UsuarioDAL
     {
-        public int NovoUsuario(Usuario us)
+        public Usuario NovoUsuario(ref string email)
         {
             using (DatabaseContext contexto = new DatabaseContext())
             {
-                return 0;
+                Usuario Us = new Usuario()
+                {
+                    Status = UserStatus.PrimeiroAcesso,
+                    UserName = email                    
+                };
+
+                try
+                {
+                    contexto.Usuarios.Add(Us);
+                    contexto.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    email = ex.Message;
+                }
+
+                return Us;
             }
         }
     }

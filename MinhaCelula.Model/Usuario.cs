@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace MinhaCelula.Model
 {
+    public enum UserStatus
+    {
+        PrimeiroAcesso = 0,
+        Ativo = 1,
+        Reset = 2,
+        Bloaqueado = 3
+    }
+
     [Table("Usuarios")]
     public class Usuario
     {
@@ -15,6 +23,7 @@ namespace MinhaCelula.Model
         public int UsuarioId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public UserStatus Status { get; set; }
 
     }
 }
