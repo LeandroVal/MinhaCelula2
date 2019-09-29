@@ -26,5 +26,8 @@ namespace MinhaCelula.Model
         [ForeignKey("PessoaCelulaId")]
         public virtual Celula PessoaCelula { get; set; }
 
+        [NotMapped]
+        public string MsgErro { get; set; }
+
     }
 }
