@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row text-center margem-top-25">
         <div class="col-1">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalNewUser">Novo</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalNewCelula">Novo</button>
         </div>
         <div class="col-9">
             <div class="input-group mb-2">
@@ -19,8 +19,6 @@
                 <input type="text" class="form-control" id="tbxBuscar" placeholder="Buscar">
             </div>
         </div>
-
-
     </div>
 
     <div class="row text-center">
@@ -34,7 +32,7 @@
                     <th scope="col">Horário</th>
                 </tr>
             </thead>
-            <tbody id="tbodyUsuarios">
+            <tbody id="tbodyCelulas">
                 @Html.Partial("_TuplaCelula", Model)
             </tbody>
         </table>
@@ -55,18 +53,31 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="form-group">
-                        <label for="tbxNomeUsuario">Nome do Usuário</label>
-                        <input id="tbxNomeUsuario" type="text" class="form-control" placeholder="Usuário de Souza">
+                        <label for="tbxNomeCelula">Nome da Célula</label>
+                        <input id="tbxNomeCelula" type="text" class="form-control" placeholder="UFC - Unico foco é Cristo">
                     </div>
                     <div class="form-group">
-                        <label for="tbxEmail">Endereço de email</label>
-                        <input id="tbxEmail" type="email" class="form-control" placeholder="usuario@exemplo.com">
+                        <label for="ddlDiaSemana">Dia da Semana</label>
+                        <select class="form-control" id="ddlDiaSemana">
+                            <option value="99">Selecione</option>
+                            <option value="0">Domingo</option>
+                            <option value="1">Segunda-Feira</option>
+                            <option value="2">Terça-Feira</option>
+                            <option value="3">Quarta-Feira</option>
+                            <option value="4">Quinta-Feira</option>
+                            <option value="5">Sexta-Feira</option>
+                            <option value="6">Sábado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tbxHorario">Horário</label>
+                        <input id="tbxHorario" type="time" class="form-control" placeholder="14:00">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Refazer();">Fechar</button>
-                <button id="btnCadastrarAlterar" type="button" class="btn btn-primary" onclick="CadastrarUsuario();">Cadastrar Usuário</button>
+                <button id="btnCadastrarAlterar" type="button" class="btn btn-primary" onclick="CadastrarCelula();">Cadastrar Célula</button>
             </div>
         </div>
     </div>
@@ -83,89 +94,83 @@
     var status;
 
     $(document).ready(function () {
-
-        $("#tbxBuscar").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $(".table tbody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-
         id = 0;
         status = 0;
     });
 
-    function CadastrarUsuario() {
+    function CadastrarCelula() {
 
-        var url = "@Url.Action("CadastrarUsuario", "Users")";
-        var Us = {
-            UsuarioId: id,
-            UserName: $("#tbxNomeUsuario").val(),
-            Email: $("#tbxEmail").val(),
-            Status: status
+        var url = "@Url.Action("CadastrarCelula", "Celulas")";
+        var Cl = {
+            CelulaId: id,
+            Name: $("#tbxNomeCelula").val(),
+            Dia: $("#ddlDiaSemana option:selected").val(),
+            Horario: $("#tbxHorario").val()
         };
 
         ProgressBar();
-        $.post(url, Us, CadastrarUsuarioPos);
+        $.post(url, Cl, CadastrarCelulaPos);
     }
 
-    function CadastrarUsuarioPos(result) {
+    function CadastrarCelulaPos(result) {
         StopProgressBar();
 
-        $("#ModalNewUser").modal('hide');
+        $("#ModalNewCelula").modal('hide');
 
         if (result.indexOf("[ERRO]") == -1) {
             if (id == 0) {
-                alertify.alert('Usuario Cadastrado', 'O usuário foi cadastrado com sucesso!');
-                $("#tbodyUsuarios").html($("#tbodyUsuarios").html() + result);
+                alertify.alert('Célula Cadastrada', 'A célula foi cadastrado com sucesso!');
+                $("#tbodyCelulas").html($("#tbodyCelulas").html() + result);
             }
             else {
-                alertify.alert('Informações Alteradas', 'As informações de usuário foram alteradas com sucesso!');
+                alertify.alert('Informações Alteradas', 'As informações de célula foram alteradas com sucesso!');
                 $("#" + id).html($(result).html());
             }
 
         }
         else {
-            alertify.alert('Erro ao cadastrar usuario', result);
+            alertify.alert('Erro ao cadastrar Célula.', result);
         }
 
         Refazer();
     }
 
-    function EditarUsuario(element) {
+    function EditarCelula(element) {
 
         element = $(element).parent().parent();
         id = element.attr("id");
-        tbxNomeUsuario.value = $(element.find("td")[0]).text();
-        tbxEmail.value = $(element.find("td")[1]).text();
-        status = ConverterStatus($(element.find("td")[2]).text());
+        tbxNomeCelula.value = $(element.find("td")[0]).text();
+        $("#ddlDiaSemana").val(ConverterDiaSemana($(element.find("td")[1]).text()));
 
-        $("#ModalNewUserLabel").text("Alterar Usuário");
+        
+        tbxHorario.value = $(element.find("td")[2]).text();
+
+        $("#ModalNewCelulaLabel").text("Alterar Célula");
         $("#btnCadastrarAlterar").text("Salvar Alterações");
-        $("#ModalNewUser").modal('show');
+        $("#ModalNewCelula").modal('show');
     }
 
 
-    function RemoverUsuario(element) {
+    function RemoverCelula(element) {
 
-        var url = "@Url.Action("RemoverUsuario", "Users")";
+        var url = "@Url.Action("RemoverCelula", "Celulas")";
         id = element;
         var Us = {
-            UsuarioId: id,
+            CelulaId: id,
         };
 
         ProgressBar();
-        $.post(url, Us, RemoverUsuarioPos);
+        $.post(url, Us, RemoveCelulaPos);
     }
 
-    function RemoverUsuarioPos(result) {
+    function RemoveCelulaPos(result) {
 
         if (result.indexOf("[ERRO]") == -1) {
-            alertify.alert('Usuario Removido', 'O usuário foi removido com sucesso!');
+            alertify.alert('Célula Removida', 'A célula foi removida com sucesso!');
             $("#" + id).remove();
         }
         else {
-            alertify.alert('Usuario naõ Removido', 'O usuário não foi removido devido ao seguinte erro: ' + result);
+            alertify.alert('Célula não Removida', 'A célula não foi removida devido ao seguinte erro: ' + result);
         }
 
         StopProgressBar();
@@ -173,27 +178,38 @@
     }
 
     function Refazer() {
-        $("#ModalNewUserLabel").text("Novo Usuário");
-        $("#btnCadastrarAlterar").text("Cadastrar Usuário");
+
+        $("#ModalNewUserCelula").text("Nova Célula");
+        $("#btnCadastrarAlterar").text("Cadastrar Célula");
         id = 0;
         status = 0;
-        tbxEmail.value = "";
-        tbxNomeUsuario.value = "";
+        tbxNomeCelula.value = "";
+        tbxHorario.value = "";
+        $("#ddlDiaSemana option:selected").val(99);
     }
 
-    function ConverterStatus(status) {
-        switch (status) {
-            case "PrimeiroAcesso":
+    function ConverterDiaSemana(dia) {
+        switch (dia) {
+            case "Domingo":
                 return 0;
                 break;
-            case "Ativo":
+            case "Segunda-Feira":
                 return 1;
                 break;
-            case "Reset":
+            case "Terça-Feira":
                 return 2;
                 break;
-            case "Bloqueado":
+            case "Quarta-Feira":
                 return 3;
+                break;
+            case "Quinta-Feira":
+                return 4;
+                break;
+            case "Sexta-Feira":
+                return 5;
+                break;
+            case "Sábado":
+                return 6;
                 break;
         }
     }

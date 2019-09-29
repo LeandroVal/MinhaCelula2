@@ -34,7 +34,7 @@ namespace MinhaCelula.WEB.Controllers
         [HttpPost]
         public ActionResult RemoverUsuario(int UsuarioId)
         {
-            return Json(new UsuarioBLL().RemoverUsuário(UsuarioId));
+            return Json(new UsuarioBLL().RemoverUsuario(UsuarioId));
         }
     }
 }
