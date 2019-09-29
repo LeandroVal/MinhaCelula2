@@ -11,8 +11,8 @@
 {
 <tr id="@Us.UsuarioId">
     <th scope="row">
-        <i class="material-icons">delete</i>
-        <i class="material-icons">edit</i>
+        <i class="material-icons clicavel" onclick="RemoverUsuario(@Us.UsuarioId);">delete</i>
+        <i class="material-icons clicavel" onclick="EditarUsuario(this);" disable="@(Us.Status == UserStatus.PrimeiroAcesso)">edit</i>
     </th>
     <th scope="row">@Us.UsuarioId</th>
     <td>@Us.UserName</td>

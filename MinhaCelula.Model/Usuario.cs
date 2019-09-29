@@ -13,7 +13,7 @@ namespace MinhaCelula.Model
         PrimeiroAcesso = 0,
         Ativo = 1,
         Reset = 2,
-        Bloaqueado = 3
+        Bloqueado = 3
     }
 
     [Table("Usuarios")]

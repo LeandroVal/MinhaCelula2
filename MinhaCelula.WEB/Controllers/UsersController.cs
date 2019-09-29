@@ -19,7 +19,7 @@ namespace MinhaCelula.WEB.Controllers
         [HttpPost]
         public ActionResult CadastrarUsuario(Usuario Us)
         {
-            new UsuarioBLL().NovoUsuario(Us);
+            new UsuarioBLL().CriarAlterarUsuario(Us);
 
             if (Us.UsuarioId == 0)
                 return Json(string.Concat("[ERRO]", Us.MsgErro));
@@ -29,6 +29,12 @@ namespace MinhaCelula.WEB.Controllers
                 Users.Add(Us);
                 return View("_TuplaUsuario", Users);
             }
+        }
+
+        [HttpPost]
+        public ActionResult RemoverUsuario(int UsuarioId)
+        {
+            return Json(new UsuarioBLL().RemoverUsuário(UsuarioId));
         }
     }
 }

@@ -1,20 +1,24 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
-    
+
     <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Progresso -->
     <link href="~/Content/css/waitMe.min.css" rel="stylesheet">
     <!-- mensagens sucesso/fracasso/outras -->
     <link href="~/Content/css/alertify.min.css" rel="stylesheet">
+    <link href="~/Content/css/themes/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/geral.css" rel="stylesheet">
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+
+    @*@Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
@@ -24,10 +28,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(Página atual)</span></a>
-                <a class="nav-item nav-link" href="@Url.Action("Index","Users")">Usuários</a>
-                <a class="nav-item nav-link" href="#">Preços</a>
-                <a class="nav-item nav-link disabled" href="#">Desativado</a>
+                @*<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(Página atual)</span></a>*@
+                <a id="Usuarios" class="nav-item nav-link" href="@Url.Action("Index","Users")">Usuários</a>
+                <a id="Relatorios" class="nav-item nav-link" href="#">Relatórios</a>
             </div>
         </div>
     </nav>
@@ -50,6 +53,10 @@
     <script src="~/Scripts/alertify.min.js"></script>
 
     <script>
+        $(document).ready(function () {
+            MarcarPaginaMenu();
+        });
+
         function ProgressBar() {
             //StopScroll();
             $('body').waitMe({
@@ -58,15 +65,21 @@
                 color: '#007bff'
             });
         };
+
         function StopProgressBar() {
             //StartScroll();
             $('body').waitMe('hide');
         };
+
+        function MarcarPaginaMenu() {
+            //$("#navbarNavAltMarkup").find("a").removeClass("active");
+            $("#@ViewBag.Title").addClass("active");
+        }
     </script>
 
 
-    @Scripts.Render("~/Scripts")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/Scripts")
+    @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -2,7 +2,7 @@
 @model IEnumerable<MinhaCelula.Model.Usuario>
 @{
     
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios";
 }
 
 
@@ -42,7 +42,7 @@
 
 </div>
 
-<!-- Modal -->
+<!-------------------------------- MODAL -----------------------------------> 
 <div class="modal fade" id="ModalNewUser" tabindex="-1" role="dialog" aria-labelledby="ModalNewUserLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -65,8 +65,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" onclick="CadastrarUsuario();">Cadastrar Usuário</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Refazer();">Fechar</button>
+                <button id="btnCadastrarAlterar" type="button" class="btn btn-primary" onclick="CadastrarUsuario();">Cadastrar Usuário</button>
             </div>
         </div>
     </div>
@@ -79,30 +79,122 @@
 </style>
 
 <script>
+    var id;
+    var status;
+
+    $(document).ready(function () {
+
+        $("#tbxBuscar").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        id = 0;
+        status = 0;
+    });
+
     function CadastrarUsuario() {
 
         var url = "@Url.Action("CadastrarUsuario", "Users")";
         var Us = {
+            UsuarioId: id,
             UserName: $("#tbxNomeUsuario").val(),
-            Email: $("#tbxEmail").val()
+            Email: $("#tbxEmail").val(),
+            Status: status
         };
 
         ProgressBar();
         $.post(url, Us, CadastrarUsuarioPos);
     }
 
-
     function CadastrarUsuarioPos(result) {
         StopProgressBar();
-        tbxEmail.value = "";
+
         $("#ModalNewUser").modal('hide');
 
         if (result.indexOf("[ERRO]") == -1) {
-            alertify.alert('Usuario Cadastrado', 'O usuário foi cadastrado com sucesso!');
-            $("#tbodyUsuarios").html($("#tbodyUsuarios").html() + result);
+            if (id == 0) {
+                alertify.alert('Usuario Cadastrado', 'O usuário foi cadastrado com sucesso!');
+                $("#tbodyUsuarios").html($("#tbodyUsuarios").html() + result);
+            }
+            else {
+                alertify.alert('Informações Alteradas', 'As informações de usuário foram alteradas com sucesso!');
+                $("#" + id).html($(result).html());
+            }
+
         }
         else {
             alertify.alert('Erro ao cadastrar usuario', result);
+        }
+
+        Refazer();
+    }
+
+    function EditarUsuario(element) {
+
+        element = $(element).parent().parent();
+        id = element.attr("id");
+        tbxNomeUsuario.value = $(element.find("td")[0]).text();
+        tbxEmail.value = $(element.find("td")[1]).text();
+        status = ConverterStatus($(element.find("td")[2]).text());
+
+        $("#ModalNewUserLabel").text("Alterar Usuário");
+        $("#btnCadastrarAlterar").text("Salvar Alterações");
+        $("#ModalNewUser").modal('show');
+    }
+
+
+    function RemoverUsuario(element) {
+
+        var url = "@Url.Action("RemoverUsuario", "Users")";
+        id = element;
+        var Us = {
+            UsuarioId: id,
+        };
+
+        ProgressBar();
+        $.post(url, Us, RemoverUsuarioPos);
+    }
+
+    function RemoverUsuarioPos(result) {
+
+        if (result.indexOf("[ERRO]") == -1) {
+            alertify.alert('Usuario Removido', 'O usuário foi removido com sucesso!');
+            $("#" + id).remove();
+        }
+        else {
+            alertify.alert('Usuario naõ Removido', 'O usuário não foi removido devido ao seguinte erro: ' + result);
+        }
+
+        StopProgressBar();
+        id = 0;
+    }
+
+    function Refazer() {
+        $("#ModalNewUserLabel").text("Novo Usuário");
+        $("#btnCadastrarAlterar").text("Cadastrar Usuário");
+        id = 0;
+        status = 0;
+        tbxEmail.value = "";
+        tbxNomeUsuario.value = "";
+    }
+
+    function ConverterStatus(status) {
+        switch (status) {
+            case "PrimeiroAcesso":
+                return 0;
+                break;
+            case "Ativo":
+                return 1;
+                break;
+            case "Reset":
+                return 2;
+                break;
+            case "Bloqueado":
+                return 3;
+                break;
         }
     }
 
