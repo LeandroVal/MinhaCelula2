@@ -1,0 +1,203 @@
+﻿
+@model IEnumerable<MinhaCelula.Model.Celula>
+@{
+
+    ViewBag.Title = "Celulas";
+}
+
+
+<div class="container">
+    <div class="row text-center margem-top-25">
+        <div class="col-1">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalNewUser">Novo</button>
+        </div>
+        <div class="col-9">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"> <i class="material-icons">search</i> </div>
+                </div>
+                <input type="text" class="form-control" id="tbxBuscar" placeholder="Buscar">
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row text-center">
+        <table class="table table-hover" style="margin-top: 20px">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Célula</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Horário</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyUsuarios">
+                @Html.Partial("_TuplaCelula", Model)
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-------------------------------- MODAL ----------------------------------->
+<div class="modal fade" id="ModalNewCelula" tabindex="-1" role="dialog" aria-labelledby="ModalNewCelulaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalNewUserLabel">Nova Célula</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="tbxNomeUsuario">Nome do Usuário</label>
+                        <input id="tbxNomeUsuario" type="text" class="form-control" placeholder="Usuário de Souza">
+                    </div>
+                    <div class="form-group">
+                        <label for="tbxEmail">Endereço de email</label>
+                        <input id="tbxEmail" type="email" class="form-control" placeholder="usuario@exemplo.com">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Refazer();">Fechar</button>
+                <button id="btnCadastrarAlterar" type="button" class="btn btn-primary" onclick="CadastrarUsuario();">Cadastrar Usuário</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .margem-top-25 {
+        margin-top: 25px;
+    }
+</style>
+
+<script>
+    var id;
+    var status;
+
+    $(document).ready(function () {
+
+        $("#tbxBuscar").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".table tbody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+        id = 0;
+        status = 0;
+    });
+
+    function CadastrarUsuario() {
+
+        var url = "@Url.Action("CadastrarUsuario", "Users")";
+        var Us = {
+            UsuarioId: id,
+            UserName: $("#tbxNomeUsuario").val(),
+            Email: $("#tbxEmail").val(),
+            Status: status
+        };
+
+        ProgressBar();
+        $.post(url, Us, CadastrarUsuarioPos);
+    }
+
+    function CadastrarUsuarioPos(result) {
+        StopProgressBar();
+
+        $("#ModalNewUser").modal('hide');
+
+        if (result.indexOf("[ERRO]") == -1) {
+            if (id == 0) {
+                alertify.alert('Usuario Cadastrado', 'O usuário foi cadastrado com sucesso!');
+                $("#tbodyUsuarios").html($("#tbodyUsuarios").html() + result);
+            }
+            else {
+                alertify.alert('Informações Alteradas', 'As informações de usuário foram alteradas com sucesso!');
+                $("#" + id).html($(result).html());
+            }
+
+        }
+        else {
+            alertify.alert('Erro ao cadastrar usuario', result);
+        }
+
+        Refazer();
+    }
+
+    function EditarUsuario(element) {
+
+        element = $(element).parent().parent();
+        id = element.attr("id");
+        tbxNomeUsuario.value = $(element.find("td")[0]).text();
+        tbxEmail.value = $(element.find("td")[1]).text();
+        status = ConverterStatus($(element.find("td")[2]).text());
+
+        $("#ModalNewUserLabel").text("Alterar Usuário");
+        $("#btnCadastrarAlterar").text("Salvar Alterações");
+        $("#ModalNewUser").modal('show');
+    }
+
+
+    function RemoverUsuario(element) {
+
+        var url = "@Url.Action("RemoverUsuario", "Users")";
+        id = element;
+        var Us = {
+            UsuarioId: id,
+        };
+
+        ProgressBar();
+        $.post(url, Us, RemoverUsuarioPos);
+    }
+
+    function RemoverUsuarioPos(result) {
+
+        if (result.indexOf("[ERRO]") == -1) {
+            alertify.alert('Usuario Removido', 'O usuário foi removido com sucesso!');
+            $("#" + id).remove();
+        }
+        else {
+            alertify.alert('Usuario naõ Removido', 'O usuário não foi removido devido ao seguinte erro: ' + result);
+        }
+
+        StopProgressBar();
+        id = 0;
+    }
+
+    function Refazer() {
+        $("#ModalNewUserLabel").text("Novo Usuário");
+        $("#btnCadastrarAlterar").text("Cadastrar Usuário");
+        id = 0;
+        status = 0;
+        tbxEmail.value = "";
+        tbxNomeUsuario.value = "";
+    }
+
+    function ConverterStatus(status) {
+        switch (status) {
+            case "PrimeiroAcesso":
+                return 0;
+                break;
+            case "Ativo":
+                return 1;
+                break;
+            case "Reset":
+                return 2;
+                break;
+            case "Bloqueado":
+                return 3;
+                break;
+        }
+    }
+
+
+</script>
+
