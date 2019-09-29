@@ -22,5 +22,9 @@ namespace MinhaCelula.DAL
         }
 
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Pessoa> Pessoas { get; set; }
+        public virtual DbSet<Endereco> Enderecos { get; set; }
+        public virtual DbSet<Frequencia> Frequencias { get; set; }
+
     }
 }

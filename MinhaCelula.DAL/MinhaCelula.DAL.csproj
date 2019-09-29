@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\EnderecoDAL.cs" />
+    <Compile Include="DAL\FrequenciaDAL.cs" />
+    <Compile Include="DAL\PessoaDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="Migrations\201909221820150_Tirth.cs" />
