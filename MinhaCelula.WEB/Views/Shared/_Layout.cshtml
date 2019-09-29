@@ -30,6 +30,7 @@
             <div class="navbar-nav">
                 @*<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(Página atual)</span></a>*@
                 <a id="Usuarios" class="nav-item nav-link" href="@Url.Action("Index","Users")">Usuários</a>
+                <a id="Celulas" class="nav-item nav-link" href="@Url.Action("Index","Celulas")">Células</a>
                 <a id="Relatorios" class="nav-item nav-link" href="#">Relatórios</a>
             </div>
         </div>
@@ -55,6 +56,13 @@
     <script>
         $(document).ready(function () {
             MarcarPaginaMenu();
+            
+            $("#tbxBuscar").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $(".table tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
         });
 
         function ProgressBar() {

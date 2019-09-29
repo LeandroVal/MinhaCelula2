@@ -1,0 +1,25 @@
+﻿@using MinhaCelula.Model
+@model IEnumerable<Celula>
+@{
+                /**/
+
+                Layout = null;
+
+}
+
+@foreach (Celula Cl in Model)
+{
+<tr id="@Cl.CelulaId">
+    <th scope="row">
+        <i class="material-icons clicavel" onclick="RemoverCelula(@Cl.CelulaId);">delete</i>
+        <i class="material-icons clicavel" onclick="EditarCelula(this);" >edit</i>
+    </th>
+    <th scope="row">@Cl.CelulaId</th>
+    <td>@Cl.Name</td>
+    <td>@(Cl.Dia == DayOfWeek.Sunday ? "Domingo" : Cl.Dia == DayOfWeek.Monday ? "Segunda-Feira" : Cl.Dia == DayOfWeek.Tuesday ? "Terça-Feira" : Cl.Dia == DayOfWeek.Wednesday ? "Quarta-Feira" : Cl.Dia == DayOfWeek.Thursday ? "Quinta-Feira" : Cl.Dia == DayOfWeek.Friday ? "Sexta-Feira" : Cl.Dia == DayOfWeek.Saturday ? "Sábado" : "")</td>
+    <td>@Cl.Horario</td>
+</tr>
+
+}
+
+

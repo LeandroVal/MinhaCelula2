@@ -1,0 +1,219 @@
+﻿
+@model IEnumerable<MinhaCelula.Model.Celula>
+@{
+
+    ViewBag.Title = "Celulas";
+}
+
+
+<div class="container">
+    <div class="row text-center margem-top-25">
+        <div class="col-1">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalNewCelula">Novo</button>
+        </div>
+        <div class="col-9">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"> <i class="material-icons">search</i> </div>
+                </div>
+                <input type="text" class="form-control" id="tbxBuscar" placeholder="Buscar">
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <table class="table table-hover" style="margin-top: 20px">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Célula</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Horário</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyCelulas">
+                @Html.Partial("_TuplaCelula", Model)
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-------------------------------- MODAL ----------------------------------->
+<div class="modal fade" id="ModalNewCelula" tabindex="-1" role="dialog" aria-labelledby="ModalNewCelulaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalNewUserLabel">Nova Célula</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="tbxNomeCelula">Nome da Célula</label>
+                        <input id="tbxNomeCelula" type="text" class="form-control" placeholder="UFC - Unico foco é Cristo">
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlDiaSemana">Dia da Semana</label>
+                        <select class="form-control" id="ddlDiaSemana">
+                            <option value="99">Selecione</option>
+                            <option value="0">Domingo</option>
+                            <option value="1">Segunda-Feira</option>
+                            <option value="2">Terça-Feira</option>
+                            <option value="3">Quarta-Feira</option>
+                            <option value="4">Quinta-Feira</option>
+                            <option value="5">Sexta-Feira</option>
+                            <option value="6">Sábado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tbxHorario">Horário</label>
+                        <input id="tbxHorario" type="time" class="form-control" placeholder="14:00">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Refazer();">Fechar</button>
+                <button id="btnCadastrarAlterar" type="button" class="btn btn-primary" onclick="CadastrarCelula();">Cadastrar Célula</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .margem-top-25 {
+        margin-top: 25px;
+    }
+</style>
+
+<script>
+    var id;
+    var status;
+
+    $(document).ready(function () {
+        id = 0;
+        status = 0;
+    });
+
+    function CadastrarCelula() {
+
+        var url = "@Url.Action("CadastrarCelula", "Celulas")";
+        var Cl = {
+            CelulaId: id,
+            Name: $("#tbxNomeCelula").val(),
+            Dia: $("#ddlDiaSemana option:selected").val(),
+            Horario: $("#tbxHorario").val()
+        };
+
+        ProgressBar();
+        $.post(url, Cl, CadastrarCelulaPos);
+    }
+
+    function CadastrarCelulaPos(result) {
+        StopProgressBar();
+
+        $("#ModalNewCelula").modal('hide');
+
+        if (result.indexOf("[ERRO]") == -1) {
+            if (id == 0) {
+                alertify.alert('Célula Cadastrada', 'A célula foi cadastrado com sucesso!');
+                $("#tbodyCelulas").html($("#tbodyCelulas").html() + result);
+            }
+            else {
+                alertify.alert('Informações Alteradas', 'As informações de célula foram alteradas com sucesso!');
+                $("#" + id).html($(result).html());
+            }
+
+        }
+        else {
+            alertify.alert('Erro ao cadastrar Célula.', result);
+        }
+
+        Refazer();
+    }
+
+    function EditarCelula(element) {
+
+        element = $(element).parent().parent();
+        id = element.attr("id");
+        tbxNomeCelula.value = $(element.find("td")[0]).text();
+        $("#ddlDiaSemana").val(ConverterDiaSemana($(element.find("td")[1]).text()));
+
+        
+        tbxHorario.value = $(element.find("td")[2]).text();
+
+        $("#ModalNewCelulaLabel").text("Alterar Célula");
+        $("#btnCadastrarAlterar").text("Salvar Alterações");
+        $("#ModalNewCelula").modal('show');
+    }
+
+
+    function RemoverCelula(element) {
+
+        var url = "@Url.Action("RemoverCelula", "Celulas")";
+        id = element;
+        var Us = {
+            CelulaId: id,
+        };
+
+        ProgressBar();
+        $.post(url, Us, RemoveCelulaPos);
+    }
+
+    function RemoveCelulaPos(result) {
+
+        if (result.indexOf("[ERRO]") == -1) {
+            alertify.alert('Célula Removida', 'A célula foi removida com sucesso!');
+            $("#" + id).remove();
+        }
+        else {
+            alertify.alert('Célula não Removida', 'A célula não foi removida devido ao seguinte erro: ' + result);
+        }
+
+        StopProgressBar();
+        id = 0;
+    }
+
+    function Refazer() {
+
+        $("#ModalNewUserCelula").text("Nova Célula");
+        $("#btnCadastrarAlterar").text("Cadastrar Célula");
+        id = 0;
+        status = 0;
+        tbxNomeCelula.value = "";
+        tbxHorario.value = "";
+        $("#ddlDiaSemana option:selected").val(99);
+    }
+
+    function ConverterDiaSemana(dia) {
+        switch (dia) {
+            case "Domingo":
+                return 0;
+                break;
+            case "Segunda-Feira":
+                return 1;
+                break;
+            case "Terça-Feira":
+                return 2;
+                break;
+            case "Quarta-Feira":
+                return 3;
+                break;
+            case "Quinta-Feira":
+                return 4;
+                break;
+            case "Sexta-Feira":
+                return 5;
+                break;
+            case "Sábado":
+                return 6;
+                break;
+        }
+    }
+
+
+</script>
+

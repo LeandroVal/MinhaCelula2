@@ -1,32 +1,32 @@
-﻿using System;
+﻿using MinhaCelula.DAL.DAL;
+using MinhaCelula.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MinhaCelula.DAL.DAL;
-using MinhaCelula.Model;
 
 namespace MinhaCelula.BLL
 {
-    public class UsuarioBLL
+    public class CelulaBLL
     {
-        public void CriarAlterarUsuario(Usuario Us)
+        public void CriarAlterarCelula(Celula Cl)
         {
-            new UsuarioDAL().CriarAlterarUsuario(Us);
+            new CelulaDAL().CriarAlterarCelula(Cl);
         }
 
-        public IEnumerable<Usuario> GetAllUsers()
+        public IEnumerable<Celula> GetAllCelula()
         {
-            return new UsuarioDAL().GetAllUsers();
+            return new CelulaDAL().GetAllCelulas();
         }
 
-        public string RemoverUsuario(int UsuarioId)
+        public string RemoverCelula(int CelulaId)
         {
             string success = string.Empty;
 
             try
             {
-                new UsuarioDAL().RemoverUsuario(UsuarioId);
+                new CelulaDAL().RemoverCelula(CelulaId);
                 success = "success";
             }
             catch (Exception ex)

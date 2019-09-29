@@ -83,14 +83,6 @@
     var status;
 
     $(document).ready(function () {
-
-        $("#tbxBuscar").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $(".table tbody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-
         id = 0;
         status = 0;
     });
@@ -165,7 +157,7 @@
             $("#" + id).remove();
         }
         else {
-            alertify.alert('Usuario naõ Removido', 'O usuário não foi removido devido ao seguinte erro: ' + result);
+            alertify.alert('Usuario não Removido', 'O usuário não foi removido devido ao seguinte erro: ' + result);
         }
 
         StopProgressBar();
