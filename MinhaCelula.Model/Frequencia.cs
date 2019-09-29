@@ -14,16 +14,16 @@ namespace MinhaCelula.Model
     {
         [Key]
         public int FrequenciaId { get; set; }
-        public DateTime FrequenciaData { get; set; }
-        public bool PresencaPessoa { get; set; }
+        public DateTime Data { get; set; }
+        public bool Presenca { get; set; }
         public int PessoaId { get; set; }
         public int CelulaId { get; set; }
 
         [ForeignKey("PessoaId")]
-        public virtual Pessoa FrequenciaPessoa { get; set; }
+        public virtual Pessoa Pessoa { get; set; }
 
         [ForeignKey("CelulaId")]
-        public virtual Celula FrequenciaCelula { get; set; }
+        public virtual Celula Celula { get; set; }
 
 
 

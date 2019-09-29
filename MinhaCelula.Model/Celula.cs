@@ -14,9 +14,9 @@ namespace MinhaCelula.Model
     {
         [Key]
         public int CelulaId { get; set; }
-        public string CelulaName { get; set; }
-        public string CelulaDia { get; set; }
-        public string CelulaHorario { get; set; }
+        public string Name { get; set; }
+        public string Dia { get; set; }
+        public string Horario { get; set; }
         public int EnderecoId { get; set; }
 
         [ForeignKey("EnderecoId")]

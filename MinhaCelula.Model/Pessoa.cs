@@ -14,14 +14,14 @@ namespace MinhaCelula.Model
     {
         [Key]
         public int PessoaId { get; set; }
-        public string PessoaName { get; set; }
-        public string PessoaTelefone  { get; set; }
-        public string PessoaFuncao { get; set; }
+        public string Name { get; set; }
+        public string Telefone  { get; set; }
+        public string Funcao { get; set; }
         public int EnderecoId { get; set; }
-        public int PessoaCelulaId { get; set; }
+        public int CelulaId { get; set; }
 
         [ForeignKey("EnderecoId")]
-        public virtual Endereco PessoaEndereco { get; set; }
+        public virtual Endereco Endereco { get; set; }
 
         [ForeignKey("PessoaCelulaId")]
         public virtual Celula PessoaCelula { get; set; }
