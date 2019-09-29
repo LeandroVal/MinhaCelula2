@@ -15,12 +15,26 @@ namespace MinhaCelula.BLL
             new UsuarioDAL().CriarAlterarUsuario(Us);
         }
 
+        public IEnumerable<Usuario> GetAllUsers2()
+        {
+            List<Usuario> Users = new UsuarioDAL().GetAllUsers2();
+            IEnumerable<Pessoa> People = new PessoaDAL().GetAllPessoas();
+
+            foreach (Usuario Us in Users)
+            {
+                Us.Nome = People.Where(P => P.PessoaId == Us.PessoaId).Select(P => P.Name).Single();
+            }
+
+            return Users;
+        }
+
+
         public IEnumerable<Usuario> GetAllUsers()
         {
             return new UsuarioDAL().GetAllUsers();
         }
 
-        public string RemoverUsuario(int UsuarioId)
+            public string RemoverUsuario(int UsuarioId)
         {
             string success = string.Empty;
 

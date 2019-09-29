@@ -15,7 +15,7 @@ namespace MinhaCelula.Model
         [Key]
         public int FrequenciaId { get; set; }
         public DateTime Data { get; set; }
-        public bool Presenca { get; set; }
+        //public bool Presenca { get; set; }
         public int PessoaId { get; set; }
         public int CelulaId { get; set; }
 

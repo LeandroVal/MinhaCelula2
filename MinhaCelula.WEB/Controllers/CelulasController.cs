@@ -13,7 +13,7 @@ namespace MinhaCelula.WEB.Controllers
         // GET: Celulas
         public ActionResult Index()
         {
-            return View(new CelulaBLL().GetAllCelula());
+            return View(new CelulaBLL().GetAllCelulas());
         }
 
         [HttpPost]

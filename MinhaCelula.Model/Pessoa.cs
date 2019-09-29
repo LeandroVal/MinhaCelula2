@@ -17,14 +17,17 @@ namespace MinhaCelula.Model
         public string Name { get; set; }
         public string Telefone  { get; set; }
         public string Funcao { get; set; }
-        public int EnderecoId { get; set; }
+
+        [ForeignKey("Endereco")]
+        public int? EnderecoId { get; set; }
+        [ForeignKey("Celula")]
         public int CelulaId { get; set; }
 
-        [ForeignKey("EnderecoId")]
+
         public virtual Endereco Endereco { get; set; }
 
-        [ForeignKey("PessoaCelulaId")]
-        public virtual Celula PessoaCelula { get; set; }
+
+        public virtual Celula Celula { get; set; }
 
         [NotMapped]
         public string MsgErro { get; set; }

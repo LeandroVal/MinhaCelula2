@@ -46,6 +46,15 @@ namespace MinhaCelula.DAL.DAL
             }
         }
 
+        public List<Usuario> GetAllUsers2()
+        {
+            using (DatabaseContext Contexto = new DatabaseContext())
+            {
+                return Contexto.Usuarios.ToList();
+            }
+           
+        }
+
         public IEnumerable<Usuario> GetAllUsers()
         {
             DatabaseContext Contexto = new DatabaseContext();

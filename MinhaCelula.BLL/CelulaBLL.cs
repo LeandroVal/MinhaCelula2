@@ -15,7 +15,7 @@ namespace MinhaCelula.BLL
             new CelulaDAL().CriarAlterarCelula(Cl);
         }
 
-        public IEnumerable<Celula> GetAllCelula()
+        public IEnumerable<Celula> GetAllCelulas()
         {
             return new CelulaDAL().GetAllCelulas();
         }

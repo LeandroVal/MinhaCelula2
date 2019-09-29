@@ -13,15 +13,19 @@ namespace MinhaCelula.WEB.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(new UsuarioBLL().GetAllUsers());
+            ViewBag.Celulas = new CelulaBLL().GetAllCelulas();
+            return View(new UsuarioBLL().GetAllUsers2());
         }
 
         [HttpPost]
-        public ActionResult CadastrarUsuario(Usuario Us)
+        public ActionResult CadastrarUsuario(Usuario Us, Pessoa P)
         {
+            new PessoaBLL().CriarAlterarPessoa(P);
+            Us.PessoaId = P.PessoaId;
             new UsuarioBLL().CriarAlterarUsuario(Us);
-
-            if (Us.UsuarioId == 0)
+            Us.Nome = P.Name;
+            
+            if (Us.UsuarioId == 0 || P.PessoaId == 0)
                 return Json(string.Concat("[ERRO]", Us.MsgErro));
             else
             {

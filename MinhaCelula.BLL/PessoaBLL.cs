@@ -11,7 +11,7 @@ namespace MinhaCelula.BLL
 
         public class PessoaBLL
         {
-            public void CriarAlterarUsuario(Pessoa Ps)
+            public void CriarAlterarPessoa(Pessoa Ps)
             {
                 new PessoaDAL().CriarAlterarPessoa(Ps);
             }

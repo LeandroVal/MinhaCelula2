@@ -21,13 +21,20 @@ namespace MinhaCelula.Model
     {
         [Key]
         public int UsuarioId { get; set; }
-        public string UserName { get; set; }
+        //public string UserName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public UserStatus Status { get; set; }
+        [ForeignKey("Pessoa")]
+        public int PessoaId { get; set; }
 
         [NotMapped]
         public string MsgErro { get; set; }
+        [NotMapped]
+        public string Nome { get; set; }
+
+
+        public virtual Pessoa Pessoa {get; set;}
 
     }
 }

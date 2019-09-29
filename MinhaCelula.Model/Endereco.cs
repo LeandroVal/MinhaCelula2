@@ -8,8 +8,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MinhaCelula.Model
 {
+    [Table("Enderecos")]
     public class Endereco
     {
+        [Key]
         public int EnderecoId { get; set; }
         public string Logradouro { get; set; }
         public string numero { get; set; }

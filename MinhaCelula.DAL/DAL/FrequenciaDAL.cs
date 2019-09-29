@@ -15,15 +15,15 @@ namespace MinhaCelula.DAL.DAL
             using (DatabaseContext contexto = new DatabaseContext())
             {
 
-                try
-                {
-                    contexto.Frequencias.Add(Fq);
-                    contexto.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Fq.MsgErro = ex.Message;
-                }
+                //try
+                //{
+                //    contexto.Frequencias.Add(Fq);
+                //    contexto.SaveChanges();
+                //}
+                //catch (Exception ex)
+                //{
+                //    Fq.MsgErro = ex.Message;
+                //}
             }
         }
 
@@ -33,23 +33,23 @@ namespace MinhaCelula.DAL.DAL
             {
 
 
-                try
-                {
-                    contexto.Frequencias.AddOrUpdate(Fq);
-                    contexto.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Fq.MsgErro = ex.Message;
-                }
+                //try
+                //{
+                //    contexto.Frequencias.AddOrUpdate(Fq);
+                //    contexto.SaveChanges();
+                //}
+                //catch (Exception ex)
+                //{
+                //    Fq.MsgErro = ex.Message;
+                //}
             }
         }
 
-        public IEnumerable<Frequencia> GetAllFrequencia()
-        {
-            DatabaseContext Contexto = new DatabaseContext();
-            return Contexto.Frequencias;
-        }
+        //public IEnumerable<Frequencia> GetAllFrequencia()
+        //{
+        //    DatabaseContext Contexto = new DatabaseContext();
+        //    return Contexto.Frequencias;
+        //}
 
         public void RemoverFrequencia(int FrequenciaId)
         {
@@ -57,9 +57,9 @@ namespace MinhaCelula.DAL.DAL
             {
                 Frequencia Fq = new Frequencia() { FrequenciaId = FrequenciaId };
 
-                Contexto.Frequencias.Attach(Fq);
+                //Contexto.Frequencias.Attach(Fq);
 
-                Contexto.Frequencias.Remove(Fq);
+                //Contexto.Frequencias.Remove(Fq);
 
                 Contexto.SaveChanges();
             }
