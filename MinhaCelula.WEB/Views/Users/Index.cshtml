@@ -92,10 +92,12 @@
 <script>
     var id;
     var status;
+    var pessoaId;
 
     $(document).ready(function () {
         id = 0;
         status = 0;
+        pessoaId = 0;
     });
 
     function CadastrarUsuario() {
@@ -104,12 +106,14 @@
         var Us = {
             UsuarioId: id,
             Email: $("#tbxEmail").val(),
-            Status: status
+            Status: status,
+            PessoaId: pessoaId
         };
         var P = {
             Name: $("#tbxNomeUsuario").val(),
             Funcao: "Secretário",
-            CelulaId: $("#ddlCelula option:selected").val()
+            CelulaId: $("#ddlCelula option:selected").val(),
+            PessoaId: pessoaId
         };
 
         var Params = {
@@ -151,6 +155,7 @@
         tbxNomeUsuario.value = $(element.find("td")[0]).text();
         tbxEmail.value = $(element.find("td")[1]).text();
         status = ConverterStatus($(element.find("td")[2]).text());
+        pessoaId = $(element.find("th")[1]).attr("id").split("-")[1];
 
         $("#ModalNewUserLabel").text("Alterar Usuário");
         $("#btnCadastrarAlterar").text("Salvar Alterações");
@@ -191,6 +196,7 @@
         status = 0;
         tbxEmail.value = "";
         tbxNomeUsuario.value = "";
+        pessoaId = 0;
         $("#ddlCelula option:selected").val(0);
     }
 

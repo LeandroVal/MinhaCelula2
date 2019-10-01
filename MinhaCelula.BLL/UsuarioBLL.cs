@@ -22,7 +22,9 @@ namespace MinhaCelula.BLL
 
             foreach (Usuario Us in Users)
             {
-                Us.Nome = People.Where(P => P.PessoaId == Us.PessoaId).Select(P => P.Name).Single();
+                Pessoa p = People.Where(P => P.PessoaId == Us.PessoaId).Single();
+                Us.Nome = p.Name;
+                Us.PessoaId = p.PessoaId;
             }
 
             return Users;
