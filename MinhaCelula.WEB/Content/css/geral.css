@@ -2,3 +2,13 @@
 {
     cursor:pointer
 }
+
+.corTitulo {
+   color: #6c757d !important;
+   font-weight: 400;
+}
+
+.noLeftPadding
+{
+    padding-left: 0px !important;
+}

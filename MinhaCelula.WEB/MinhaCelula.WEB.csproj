@@ -161,7 +161,9 @@
     <Content Include="Content\css\alertify.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\Chart.min.css" />
     <Content Include="Content\css\geral.css" />
+    <Content Include="Content\css\MyCard.css" />
     <Content Include="Content\css\themes\bootstrap.min.css" />
     <Content Include="Content\css\waitMe.min.css" />
     <Content Include="favicon.ico" />
@@ -173,6 +175,7 @@
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\Chart.bundle.min.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\waitMe.min.js" />
     <Content Include="Web.config" />
