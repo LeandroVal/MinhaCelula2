@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201909291922104_seventh.Designer.cs">
       <DependentUpon>201909291922104_seventh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910121432298_Oitava.cs" />
+    <Compile Include="Migrations\201910121432298_Oitava.Designer.cs">
+      <DependentUpon>201910121432298_Oitava.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909291922104_seventh.resx">
       <DependentUpon>201909291922104_seventh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910121432298_Oitava.resx">
+      <DependentUpon>201910121432298_Oitava.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

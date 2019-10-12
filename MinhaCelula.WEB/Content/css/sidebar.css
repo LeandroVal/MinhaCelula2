@@ -1,0 +1,29 @@
+﻿.sidebar-item {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: inherit;
+}
+
+    .sidebar-item:hover {
+        text-decoration: none;
+        color: white !important;
+        font-weight: bold;
+    }
+
+.list-group-item.PaddingMenu {
+    color: #495057;
+}
+
+    .list-group-item.PaddingMenu:hover {
+        background-color: #98A4C7;
+        text-decoration: none;
+        color: white !important;
+        font-weight: bold;
+    }
+
+    .list-group-item.PaddingMenu.selecionado {
+        background-color: #98A4C7;
+        text-decoration: none;
+        color: white !important;
+        font-weight: bold;
+    }

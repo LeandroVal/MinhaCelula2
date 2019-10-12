@@ -14,6 +14,8 @@
     <link href="~/Content/css/alertify.min.css" rel="stylesheet">
     <link href="~/Content/css/themes/bootstrap.min.css" rel="stylesheet">
     <link href="~/Content/css/geral.css" rel="stylesheet">
+    <link href="~/Content/css/sidebar.css" rel="stylesheet">
+
 
 
 
@@ -28,10 +30,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a id="Home" class="nav-item nav-link" href="@Url.Action("Index","Home")">Home</a>
-                <a id="Usuarios" class="nav-item nav-link" href="@Url.Action("Index","Users")">Usuários</a>
+                @*<a id="Home" class="nav-item nav-link" href="@Url.Action("Index","Home")">Home</a>*@
+                @*<a id="Usuarios" class="nav-item nav-link" href="@Url.Action("Index","Users")">Usuários</a>
                 <a id="Celulas" class="nav-item nav-link" href="@Url.Action("Index","Celulas")">Células</a>
-                <a id="Relatorios" class="nav-item nav-link" href="#">Relatórios</a>
+                <a id="Relatorios" class="nav-item nav-link" href="#">Relatórios</a>*@
             </div>
         </div>
     </nav>
@@ -39,7 +41,7 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
     <div class="container-fluid body-content" style="padding-top: 20px;">
-        <div id="MenuLateral" class="shadow-sm" style="height: 100%;width:16.666%; position: absolute; left: 0; top: 56px; background-color: white; overflow: auto;">
+        <div id="MenuLateral" class="shadow-sm" style="height: 100%;width:16.666%; position: absolute; left: 0; top: 56px; background-color: white; overflow-y: auto; overflow-x: hidden;">
 
             <div style="height: 12.5%; width: 100%; margin-top: 20px;">
                 <div class="align-middle">
@@ -51,53 +53,66 @@
 
                 <ul class="list-group list-group-flush">
 
-                    <li class="list-group-item list-group-item-action PaddingMenu">
-                        <div class="row">
-                            <div class="col-2"><i class="material-icons">dashboard</i></div>
-                            <div class="col-10">Dashboard</div>
-                        </div>
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Home" class="sidebar-item" href="@Url.Action("Index","Home")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">dashboard</i></div>
+                                <div class="col-9">Dashboard</div>
+                            </div>
+                        </a>
                     </li>
 
-                    <li class="list-group-item list-group-item-action PaddingMenu">
-                        <div class="row">
-                            <div class="col-2"><i class="material-icons">people</i></div>
-                            <div class="col-10">Usuários</div>
-                        </div>
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Usuarios" class="sidebar-item" href="@Url.Action("Index","Users")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">people</i></div>
+                                <div class="col-9">Usuários</div>
+                            </div>
+                        </a>
                     </li>
 
-                    <li class="list-group-item list-group-item-action PaddingMenu">
-                        <div class="row">
-                            <div class="col-2"><i class="material-icons">group_work</i></div>
-                            <div class="col-10">Células</div>
-                        </div>
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Celulas" class="sidebar-item" href="@Url.Action("Index","Celulas")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">group_work</i></div>
+                                <div class="col-9">Células</div>
+                            </div>
+                        </a>
                     </li>
 
-                    <li class="list-group-item list-group-item-action PaddingMenu">
-                        <div class="row">
-                            <div class="col-2"><i class="material-icons">layers</i></div>
-                            <div class="col-10">Relatórios</div>
-                        </div>
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Relatorios" class="sidebar-item" href="#">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">layers</i></div>
+                                <div class="col-9">Relatórios</div>
+                            </div>
+                        </a>
+
                     </li>
 
-                    <li class="list-group-item list-group-item-action PaddingMenu">
-                        <div class="row">
-                            <div class="col-2"><i class="material-icons">settings_applications</i></div>
-                            <div class="col-10">Sair</div>
-                        </div>
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Configuracoes" class="sidebar-item" href="@Url.Action("Index","Home")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">settings_applications</i></div>
+                                <div class="col-9">Configurações</div>
+                            </div>
+                        </a>
                     </li>
 
-                    <li class="list-group-item list-group-item-action PaddingMenu">
-                        <div class="row">
-                            <div class="col-2"><i class="material-icons">power_settings_new</i></div>
-                            <div class="col-10">Sair</div>
-                        </div>
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Sair" class="sidebar-item" href="@Url.Action("Index","Home")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">power_settings_new</i></div>
+                                <div class="col-9">Sair</div>
+                            </div>
+                        </a>
                     </li>
 
                 </ul>
 
             </div>
         </div>
-        <div id="container" class="container" style="height: auto; width:100%; position: absolute; left: 16.666%; top: 56px; padding-top: 20px;">
+        <div id="container" class="container" style="height: auto; width:100%; position: absolute; left: 16.666%; top: 56px; padding: 20px 0px 0px 40px;">
             @RenderBody()
             <hr />
             <footer>
@@ -148,7 +163,7 @@
 
         function MarcarPaginaMenu() {
             //$("#navbarNavAltMarkup").find("a").removeClass("active");
-            $("#@ViewBag.Title").addClass("active");
+            $("#@ViewBag.Title").parent().addClass("selecionado");
         }
     </script>
 

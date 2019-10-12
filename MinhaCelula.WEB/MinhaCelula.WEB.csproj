@@ -164,6 +164,7 @@
     <Content Include="Content\css\Chart.min.css" />
     <Content Include="Content\css\geral.css" />
     <Content Include="Content\css\MyCard.css" />
+    <Content Include="Content\css\sidebar.css" />
     <Content Include="Content\css\themes\bootstrap.min.css" />
     <Content Include="Content\css\waitMe.min.css" />
     <Content Include="Content\img\IEQ.png" />
