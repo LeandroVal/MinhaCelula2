@@ -12,3 +12,11 @@
 {
     padding-left: 0px !important;
 }
+
+.noPadding {
+    padding: 0px;
+}
+
+.PaddingMenu{
+    padding: 10px 0px 4px 20px;
+}

@@ -20,7 +20,7 @@
     @*@Styles.Render("~/Content/css")*@
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
-<body  style="background-color: #F2F3F8;">
+<body style="background-color: #F2F3F8;">
     <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
         <a class="navbar-brand" href="#">MinhaCelula</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
@@ -38,13 +38,80 @@
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-    <div class="container body-content" style="padding-top: 20px;">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Minha Celula Protected By @@Copyright</p>
-        </footer>
+    <div class="container-fluid body-content" style="padding-top: 20px;">
+        <div id="MenuLateral" class="shadow-sm" style="height: 100%;width:16.666%; position: absolute; left: 0; top: 56px; background-color: white; overflow: auto;">
+
+            <div style="height: 12.5%; width: 100%; margin-top: 20px;">
+                <div class="align-middle">
+                    <img src="~/Content/img/IEQ.png" class="rounded-circle border" alt="..." style="height:25%; width: 25%; margin: 0 0 0 15px">
+                    <h6 style="position: absolute; left: calc(25% + 15px + 20px); top: 30px;">Pastora Fulana</h6>
+                    <span style="position: absolute;left: calc(25% + 15px + 20px);top: 50px;">Administrador</span>
+                </div>
+                <hr />
+
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item list-group-item-action PaddingMenu">
+                        <div class="row">
+                            <div class="col-2"><i class="material-icons">dashboard</i></div>
+                            <div class="col-10">Dashboard</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item list-group-item-action PaddingMenu">
+                        <div class="row">
+                            <div class="col-2"><i class="material-icons">people</i></div>
+                            <div class="col-10">Usuários</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item list-group-item-action PaddingMenu">
+                        <div class="row">
+                            <div class="col-2"><i class="material-icons">group_work</i></div>
+                            <div class="col-10">Células</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item list-group-item-action PaddingMenu">
+                        <div class="row">
+                            <div class="col-2"><i class="material-icons">layers</i></div>
+                            <div class="col-10">Relatórios</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item list-group-item-action PaddingMenu">
+                        <div class="row">
+                            <div class="col-2"><i class="material-icons">settings_applications</i></div>
+                            <div class="col-10">Sair</div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item list-group-item-action PaddingMenu">
+                        <div class="row">
+                            <div class="col-2"><i class="material-icons">power_settings_new</i></div>
+                            <div class="col-10">Sair</div>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <div id="container" class="container" style="height: auto; width:100%; position: absolute; left: 16.666%; top: 56px; padding-top: 20px;">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Minha Celula Protected By @@Copyright</p>
+            </footer>
+        </div>
+
+        
+
     </div>
+
+    
+
+
 
 
     @*<script src="~/Scripts/popper.min.js"></script>*@
@@ -56,7 +123,7 @@
     <script>
         $(document).ready(function () {
             MarcarPaginaMenu();
-            
+
             $("#tbxBuscar").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $(".table tbody tr").filter(function () {
@@ -87,7 +154,7 @@
 
 
     @*@Scripts.Render("~/Scripts")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
