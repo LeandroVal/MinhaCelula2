@@ -14,13 +14,15 @@
     <link href="~/Content/css/alertify.min.css" rel="stylesheet">
     <link href="~/Content/css/themes/bootstrap.min.css" rel="stylesheet">
     <link href="~/Content/css/geral.css" rel="stylesheet">
+    <link href="~/Content/css/sidebar.css" rel="stylesheet">
+
 
 
 
     @*@Styles.Render("~/Content/css")*@
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
-<body>
+<body style="background-color: #F2F3F8;">
     <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
         <a class="navbar-brand" href="#">MinhaCelula</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
@@ -28,23 +30,103 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                @*<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(Página atual)</span></a>*@
-                <a id="Usuarios" class="nav-item nav-link" href="@Url.Action("Index","Users")">Usuários</a>
+                @*<a id="Home" class="nav-item nav-link" href="@Url.Action("Index","Home")">Home</a>*@
+                @*<a id="Usuarios" class="nav-item nav-link" href="@Url.Action("Index","Users")">Usuários</a>
                 <a id="Celulas" class="nav-item nav-link" href="@Url.Action("Index","Celulas")">Células</a>
-                <a id="Relatorios" class="nav-item nav-link" href="#">Relatórios</a>
+                <a id="Relatorios" class="nav-item nav-link" href="#">Relatórios</a>*@
             </div>
         </div>
     </nav>
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Minha Celula Protected By @@Copyright</p>
-        </footer>
+    <div class="container-fluid body-content" style="padding-top: 20px;">
+        <div id="MenuLateral" class="shadow-sm" style="height: 100%;width:16.666%; position: absolute; left: 0; top: 56px; background-color: white; overflow-y: auto; overflow-x: hidden;">
+
+            <div style="height: 12.5%; width: 100%; margin-top: 20px;">
+                <div class="align-middle">
+                    <img src="~/Content/img/IEQ.png" class="rounded-circle border" alt="..." style="height:25%; width: 25%; margin: 0 0 0 15px">
+                    <h6 style="position: absolute; left: calc(25% + 15px + 20px); top: 30px;">Pastora Fulana</h6>
+                    <span style="position: absolute;left: calc(25% + 15px + 20px);top: 50px;">Administrador</span>
+                </div>
+                <hr />
+
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Home" class="sidebar-item" href="@Url.Action("Index","Home")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">dashboard</i></div>
+                                <div class="col-9">Dashboard</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Usuarios" class="sidebar-item" href="@Url.Action("Index","Users")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">people</i></div>
+                                <div class="col-9">Usuários</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Celulas" class="sidebar-item" href="@Url.Action("Index","Celulas")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">group_work</i></div>
+                                <div class="col-9">Células</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Relatorios" class="sidebar-item" href="#">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">layers</i></div>
+                                <div class="col-9">Relatórios</div>
+                            </div>
+                        </a>
+
+                    </li>
+
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Configuracoes" class="sidebar-item" href="@Url.Action("Index","Home")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">settings_applications</i></div>
+                                <div class="col-9">Configurações</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="list-group-item PaddingMenu">
+                        <a id="Sair" class="sidebar-item" href="@Url.Action("Index","Home")">
+                            <div class="row">
+                                <div class="col-2"><i class="material-icons">power_settings_new</i></div>
+                                <div class="col-9">Sair</div>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+        <div id="container" class="container" style="height: auto; width:100%; position: absolute; left: 16.666%; top: 56px; padding: 20px 0px 0px 40px;">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Minha Celula Protected By @@Copyright</p>
+            </footer>
+        </div>
+
+        
+
     </div>
+
+    
+
+
 
 
     @*<script src="~/Scripts/popper.min.js"></script>*@
@@ -56,7 +138,7 @@
     <script>
         $(document).ready(function () {
             MarcarPaginaMenu();
-            
+
             $("#tbxBuscar").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $(".table tbody tr").filter(function () {
@@ -81,13 +163,13 @@
 
         function MarcarPaginaMenu() {
             //$("#navbarNavAltMarkup").find("a").removeClass("active");
-            $("#@ViewBag.Title").addClass("active");
+            $("#@ViewBag.Title").parent().addClass("selecionado");
         }
     </script>
 
 
     @*@Scripts.Render("~/Scripts")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

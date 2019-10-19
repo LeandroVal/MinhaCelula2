@@ -32,6 +32,9 @@ namespace MinhaCelula.DAL.DAL
         {
             using (DatabaseContext contexto = new DatabaseContext())
             {
+                //if(Us.UsuarioId != 0)
+                //Us.PessoaId = contexto.Usuarios.Where(U => U.UsuarioId == Us.UsuarioId).Select(U => U.PessoaId).Single();
+
                 Us.Status = UserStatus.PrimeiroAcesso;
 
                 try

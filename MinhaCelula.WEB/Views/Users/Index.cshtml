@@ -7,10 +7,16 @@
 }
 
 
+
 <div class="container">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col">
+            <h4 class="corTitulo">Gerenciador de Usuários</h4>
+        </div>
+    </div>
     <div class="row text-center margem-top-25">
         <div class="col-1">
-            <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#ModalNewUser">Novo</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalNewUser">Novo</button>
         </div>
         <div class="col-9">
             <div class="input-group mb-2">
@@ -25,7 +31,7 @@
     </div>
 
     <div class="row text-center">
-        <table class="table table-hover" style="margin-top: 20px">
+        <table class="table table-hover caixa" style="margin-top: 20px">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -92,10 +98,12 @@
 <script>
     var id;
     var status;
+    var pessoaId;
 
     $(document).ready(function () {
         id = 0;
         status = 0;
+        pessoaId = 0;
     });
 
     function CadastrarUsuario() {
@@ -104,12 +112,14 @@
         var Us = {
             UsuarioId: id,
             Email: $("#tbxEmail").val(),
-            Status: status
+            Status: status,
+            PessoaId: pessoaId
         };
         var P = {
             Name: $("#tbxNomeUsuario").val(),
             Funcao: "Secretário",
-            CelulaId: $("#ddlCelula option:selected").val()
+            CelulaId: $("#ddlCelula option:selected").val(),
+            PessoaId: pessoaId
         };
 
         var Params = {
@@ -151,6 +161,7 @@
         tbxNomeUsuario.value = $(element.find("td")[0]).text();
         tbxEmail.value = $(element.find("td")[1]).text();
         status = ConverterStatus($(element.find("td")[2]).text());
+        pessoaId = $(element.find("th")[1]).attr("id").split("-")[1];
 
         $("#ModalNewUserLabel").text("Alterar Usuário");
         $("#btnCadastrarAlterar").text("Salvar Alterações");
@@ -191,6 +202,7 @@
         status = 0;
         tbxEmail.value = "";
         tbxNomeUsuario.value = "";
+        pessoaId = 0;
         $("#ddlCelula option:selected").val(0);
     }
 

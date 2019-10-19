@@ -1,31 +1,247 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<link href="~/Content/css/Chart.min.css" rel="stylesheet">
+<link href="~/Content/css/MyCard.css" rel="stylesheet">
+
+
+
+
+<div class="container-fluid">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col">
+            <h4 class="corTitulo">Estatística Semanal</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+
+            <div class="myCard rounded shadow-sm" style="height: 140px;">
+
+                <div class="row body">
+                    <div class="col">
+                        <i class="material-icons myCard-icon">people</i>
+                    </div>
+                    <div class="col">
+                        <p class="text-right myCard-title">Visitantes</p>
+                        <p class="text-right myCard-value">18</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <hr style="margin:0px;" />
+                        <p class="text-right myCard-footer-text">Desde a Ultima Semana:</p>
+                        <p class="text-right myCard-footer-value positivo"> <i class="material-icons">arrow_drop_up</i> 2.75%</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+
+            <div class="myCard rounded shadow-sm" style="height: 140px;">
+
+                <div class="row body">
+                    <div class="col">
+                        <i class="material-icons myCard-icon">person_add_disabled</i>
+                    </div>
+                    <div class="col">
+                        <p class="text-right myCard-title">Ausentes</p>
+                        <p class="text-right myCard-value">6</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <hr style="margin:0px;" />
+                        <p class="text-right myCard-footer-text">Desde a Ultima Semana:</p>
+                        <p class="text-right myCard-footer-value negativo"> <i class="material-icons">arrow_drop_up</i> 4%</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+
+            <div class="myCard rounded shadow-sm" style="height: 140px;">
+
+                <div class="row body">
+                    <div class="col">
+                        <i class="material-icons myCard-icon">local_atm</i>
+                    </div>
+                    <div class="col">
+                        <p class="text-right myCard-title">Oferta</p>
+                        <p class="text-right myCard-value">R$ 78,60</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <hr style="margin:0px;" />
+                        <p class="text-right myCard-footer-text">Desde a Ultima Semana:</p>
+                        <p class="text-right myCard-footer-value positivo"> <i class="material-icons">arrow_drop_up</i> 8.13%</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" style="margin: 60px 0px 20px 0px;">
+        <div class="col noLeftPadding">
+            <h4 class="corTitulo">Estatística Mensal</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <canvas id="myChart" class="rounded shadow-sm" style="width:50%; height:150px !important; background-color: white !important;"></canvas>
+        </div>
+        <div class="col-6">
+                <canvas id="myChart2" class="rounded shadow-sm" style="width:50%; height:150px !important; background-color: white !important;"></canvas>
+        </div>
+    </div>
+
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<script type="text/javascript" src="~/Scripts/Chart.bundle.min.js"></script>
+<script>
+    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var config = {
+        type: 'line',
+        data: {
+            labels: ['1ª', '2ª', '3ª', '4ª', '5ª'],
+            datasets: [{
+                label: 'Outubro',
+                backgroundColor: '#059BFF',
+                borderColor: '#059BFF',
+                data: [
+                    48,
+                    40,
+                    53,
+                    36,
+                    40
+                ],
+                fill: false,
+            }, {
+                label: 'Setembro',
+                fill: false,
+                backgroundColor: '#49567E',
+                borderColor: '#49567E',
+                data: [
+                    44,
+                    38,
+                    40,
+                    49,
+                    46
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Participantes Semanais'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Semana'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Quantidade de Participantes'
+                    }
+                }]
+            }
+        }
+    };
+
+    var config2 =  {
+        type: 'bar',
+        data: {
+            labels: ['1ª', '2ª', '3ª', '4ª', '5ª'],
+            datasets: [{
+                label: 'Outubro',
+                backgroundColor: '#2979ff',
+                borderColor: '#2979ff',
+                data: [
+                    7,
+                    12,
+                    4,
+                    7,
+                    9
+                ],
+                fill: false,
+            }, {
+                label: 'Setembro',
+                fill: false,
+                    backgroundColor: '#ef6c00',
+                    borderColor: '#ef6c00',
+                data: [
+                    44,
+                    38,
+                    40,
+                    49,
+                    46
+                ],
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Visitantes Semanais'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Semana'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Quantidade de Visitantes'
+                    }
+                }]
+            }
+        }
+    };
+
+    window.onload = function () {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var ctx2 = document.getElementById('myChart2').getContext('2d');
+        window.myLine = new Chart(ctx, config);
+        window.myLine = new Chart(ctx2, config2);
+
+    };
+
+</script>
+

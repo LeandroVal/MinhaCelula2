@@ -1,0 +1,69 @@
+﻿.myCard {
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+    .myCard .body {
+        height: 75%
+    }
+
+.myCard-icon {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    font-size: 5em;
+    color: #98A4C7 !important;
+}
+
+.myCard-title {
+    position: absolute;
+    top: 20%;
+    right: 25%;
+    color: #9e9e9e;
+}
+
+.myCard-value {
+    position: absolute;
+    top: 40%;
+    right: 25%;
+    font-size: 2em;
+    color: #616161;
+}
+
+.myCard-footer-text {
+    position: absolute;
+    left: 15%;
+    margin: 9px 0px 10px 0px;
+    font-size: 0.7em;
+    color: #616161;
+}
+
+.myCard-footer-value {
+    position: absolute;
+    right: 15%;
+    margin-top: -2px;
+    font-size: 0.7em;
+}
+
+
+
+
+    .myCard-footer-value i {
+        transform: translate(5px, 5px);
+    }
+
+    .myCard-footer-value.positivo {
+        color: #28a745 !important;
+    }
+
+    .myCard-footer-value.negativo {
+        color: #dc3545 !important;
+    }
+
+
+.myCard:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
