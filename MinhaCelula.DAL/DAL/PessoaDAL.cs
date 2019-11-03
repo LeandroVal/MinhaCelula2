@@ -11,6 +11,13 @@ namespace MinhaCelula.DAL.DAL
     public class PessoaDAL
     {
 
+        public Pessoa GetPessoabyId(int PessoaId)
+        {
+            using (DatabaseContext contexto = new DatabaseContext())
+            {
+                return contexto.Pessoas.Include("Endereco").Include("Celula").Where(P => P.PessoaId == PessoaId).SingleOrDefault();
+            }
+        }
         public void NovaPessoa(Pessoa Ps)
         {
             using (DatabaseContext contexto = new DatabaseContext())
