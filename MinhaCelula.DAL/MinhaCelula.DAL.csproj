@@ -53,35 +53,17 @@
     <Compile Include="DAL\PessoaDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Migrations\201909221820150_Tirth.cs" />
-    <Compile Include="Migrations\201909221820150_Tirth.Designer.cs">
-      <DependentUpon>201909221820150_Tirth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909291551238_fourth.cs" />
-    <Compile Include="Migrations\201909291551238_fourth.Designer.cs">
-      <DependentUpon>201909291551238_fourth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909291713421_fifth.cs" />
-    <Compile Include="Migrations\201909291713421_fifth.Designer.cs">
-      <DependentUpon>201909291713421_fifth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909291908391_sixth.cs" />
-    <Compile Include="Migrations\201909291908391_sixth.Designer.cs">
-      <DependentUpon>201909291908391_sixth.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909291922104_seventh.cs" />
-    <Compile Include="Migrations\201909291922104_seventh.Designer.cs">
-      <DependentUpon>201909291922104_seventh.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910121432298_Oitava.cs" />
-    <Compile Include="Migrations\201910121432298_Oitava.Designer.cs">
-      <DependentUpon>201910121432298_Oitava.cs</DependentUpon>
+    <Compile Include="Migrations\201911011352206_primeira.cs" />
+    <Compile Include="Migrations\201911011352206_primeira.Designer.cs">
+      <DependentUpon>201911011352206_primeira.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,23 +73,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909221820150_Tirth.resx">
-      <DependentUpon>201909221820150_Tirth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909291551238_fourth.resx">
-      <DependentUpon>201909291551238_fourth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909291713421_fifth.resx">
-      <DependentUpon>201909291713421_fifth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909291908391_sixth.resx">
-      <DependentUpon>201909291908391_sixth.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909291922104_seventh.resx">
-      <DependentUpon>201909291922104_seventh.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910121432298_Oitava.resx">
-      <DependentUpon>201910121432298_Oitava.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911011352206_primeira.resx">
+      <DependentUpon>201911011352206_primeira.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
