@@ -64,7 +64,8 @@ namespace apimycell.Controllers
         public IEnumerable<Pessoa> GetAllProdutos()
         {
             IEnumerable<Pessoa> pessoas = db.Pessoas.ToList();
-            if (pessoas == null)
+
+             if (pessoas == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
@@ -75,6 +76,9 @@ namespace apimycell.Controllers
         public Pessoa GetPessoa(int id)
         {
             Pessoa pessoas = db.Pessoas.Find(id);
+            Endereco endereco = db.Enderecos.Find(pessoas.EnderecoId);
+            pessoas.Endereco = endereco;
+
             if (pessoas == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
