@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaCelula.BLL", "MinhaCelula.BLL\MinhaCelula.BLL.csproj", "{1382C293-A7B2-4845-AE67-88CFF59F155F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaCelula.Model", "MinhaCelula.Model\MinhaCelula.Model.csproj", "{97368AB7-3753-4A04-A3B1-9BC72BBF0A38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaCelula.WEB", "MinhaCelula.WEB\MinhaCelula.WEB.csproj", "{24C6B791-0743-4F79-822B-6B10D057F569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apimycell", "apimycell\apimycell.csproj", "{6CC6693F-D82E-445E-B2A6-C90C31E05CD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{24C6B791-0743-4F79-822B-6B10D057F569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24C6B791-0743-4F79-822B-6B10D057F569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24C6B791-0743-4F79-822B-6B10D057F569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC6693F-D82E-445E-B2A6-C90C31E05CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC6693F-D82E-445E-B2A6-C90C31E05CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC6693F-D82E-445E-B2A6-C90C31E05CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CC6693F-D82E-445E-B2A6-C90C31E05CD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAEF9E58-D30E-452A-B7D9-66BD573E5A27}
 	EndGlobalSection
 EndGlobal
