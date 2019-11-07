@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 using apimycell.Models;
 using MinhaCelula.DAL.DAL;
 
@@ -61,28 +62,17 @@ namespace apimycell.Controllers
         private DatabaseContext db = new DatabaseContext();
 
         // GET api/Usuario
-        public IEnumerable<Pessoa> GetAllProdutos()
+        public IEnumerable<MinhaCelula.Model.Pessoa> GetAllProdutos()
         {
-            IEnumerable<Pessoa> pessoas = db.Pessoas.ToList();
+            var x = new PessoaDAL().GetAllPessoas().ToList();
 
-             if (pessoas == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
-            return pessoas;
+            return x;
         }
 
         // GET api/Usuario/5
-        public Pessoa GetPessoa(int id)
+        public MinhaCelula.Model.Pessoa GetPessoa(int id)
         {
-            Pessoa pessoas = db.Pessoas.Find(id);
-            Endereco endereco = db.Enderecos.Find(pessoas.EnderecoId);
-            pessoas.Endereco = endereco;
-
-            if (pessoas == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
+            MinhaCelula.Model.Pessoa pessoas = new PessoaDAL().GetPessoabyId(id);
 
             return pessoas;
         }
