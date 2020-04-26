@@ -209,8 +209,26 @@
 
     function EnviarEmail(result) {
         /////Pegar o id no reslt do usuariopos na segunda th
-        result.find()
+      var idUsuario = $(result).attr('id');
+
+
+        var url = "@Url.Action("EnviarEmail", "SerderEmails")";
+        var info = {
+          userId: idUsuario,
+          NomeCadastrante: $("#UsuarioLogado").text()
+      };
+      $.post(url, info, EnviarEmailPos);
+  }
+
+  function EnviarEmailPos(result) {
+    if (result.indexOf("[ERRO]") == -1) {
+      alertify.set('notifier', 'position', 'top-center');
+      alertify.success('Email enviado com sucesso!');
     }
+    else {
+      alertify.alert('Erro ao enviar o email.', result);
+    }
+  }
 
     function EditarUsuario(element) {
 
@@ -268,8 +286,6 @@
 
     $("#ModalNewUserCelula").text("Nova Célula");
     $("#btnCadastrarCelula").text("Cadastrar Célula");
-    id = 0;
-    status = 0;
     tbxNomeCelula.value = "";
     tbxHorario.value = "";
     $("#ddlDiaSemana option:selected").val(99);
@@ -296,7 +312,7 @@
 
         var url = "@Url.Action("CadastrarCelula", "Celulas")";
         var Cl = {
-            CelulaId: id,
+            CelulaId: 0,
             Name: $("#tbxNomeCelula").val(),
             Dia: $("#ddlDiaSemana option:selected").val(),
             Horario: $("#tbxHorario").val()
