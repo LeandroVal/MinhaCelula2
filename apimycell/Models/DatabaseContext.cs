@@ -14,6 +14,8 @@ namespace apimycell.Models
 
         public virtual DbSet<Pessoa> Pessoas{ get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Endereco> Enderecos { get; set; }
+
     }
 
 }
