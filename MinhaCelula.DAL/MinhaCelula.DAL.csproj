@@ -53,9 +53,9 @@
     <Compile Include="DAL\PessoaDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Migrations\201911011352206_primeira.cs" />
-    <Compile Include="Migrations\201911011352206_primeira.Designer.cs">
-      <DependentUpon>201911011352206_primeira.cs</DependentUpon>
+    <Compile Include="Migrations\202004211929549_one.cs" />
+    <Compile Include="Migrations\202004211929549_one.Designer.cs">
+      <DependentUpon>202004211929549_one.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,8 +73,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911011352206_primeira.resx">
-      <DependentUpon>201911011352206_primeira.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004211929549_one.resx">
+      <DependentUpon>202004211929549_one.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
