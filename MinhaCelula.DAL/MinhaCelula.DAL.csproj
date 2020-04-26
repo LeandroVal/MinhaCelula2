@@ -53,10 +53,6 @@
     <Compile Include="DAL\PessoaDAL.cs" />
     <Compile Include="DAL\UsuarioDAL.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Migrations\202004211929549_one.cs" />
-    <Compile Include="Migrations\202004211929549_one.Designer.cs">
-      <DependentUpon>202004211929549_one.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,11 +67,6 @@
       <Project>{97368ab7-3753-4a04-a3b1-9bc72bbf0a38}</Project>
       <Name>MinhaCelula.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202004211929549_one.resx">
-      <DependentUpon>202004211929549_one.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

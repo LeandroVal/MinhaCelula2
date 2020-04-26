@@ -2,97 +2,149 @@
 
 @model IEnumerable<Usuario>
 @{
-    
-    ViewBag.Title = "Usuarios";
+
+  ViewBag.Title = "Usuarios";
 }
 
 
 
 <div class="container">
-    <div class="row" style="margin-bottom: 20px;">
-        <div class="col">
-            <h4 class="corTitulo">Gerenciador de Usuários</h4>
-        </div>
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col">
+      <h4 class="corTitulo">Gerenciador de Usuários</h4>
     </div>
-    <div class="row text-center margem-top-25">
-        <div class="col-1">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalNewUser">Novo</button>
+  </div>
+  <div class="row text-center margem-top-25">
+    <div class="col-1">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalNewUser">Novo</button>
+    </div>
+    <div class="col-9">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"> <i class="material-icons">search</i> </div>
         </div>
-        <div class="col-9">
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text"> <i class="material-icons">search</i> </div>
-                </div>
-                <input type="text" class="form-control" id="tbxBuscar" placeholder="Buscar">
-            </div>
-        </div>
-
-
+        <input type="text" class="form-control" id="tbxBuscar" placeholder="Buscar">
+      </div>
     </div>
 
-    <div class="row text-center">
-        <table class="table table-hover caixa" style="margin-top: 20px">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nome de Usuario</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody id="tbodyUsuarios">
-                @Html.Partial("_TuplaUsuario", Model)
-            </tbody>
-        </table>
-    </div>
+
+  </div>
+
+  <div class="row text-center">
+    <table class="table table-hover caixa" style="margin-top: 20px">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ID</th>
+          <th scope="col">Nome de Usuario</th>
+          <th scope="col">Email</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody id="tbodyUsuarios">
+        @Html.Partial("_TuplaUsuario", Model)
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
-<!-------------------------------- MODAL -----------------------------------> 
+<!-------------------------------- MODAL ----------------------------------->
 <div class="modal fade" id="ModalNewUser" tabindex="-1" role="dialog" aria-labelledby="ModalNewUserLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalNewUserLabel">Novo Usuário</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalNewUserLabel">Novo Usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="form-group">
+            <label for="tbxNomeUsuario">Nome do Usuário</label>
+            <input id="tbxNomeUsuario" type="text" class="form-control" placeholder="Usuário de Souza">
+          </div>
+          <div class="form-group">
+            <label for="tbxEmail">Endereço de email</label>
+            <input id="tbxEmail" type="email" class="form-control" placeholder="usuario@exemplo.com">
+          </div>
+          <div class="row">
+            <div class="form-group col-10">
+              <label for="ddlCelula">Célula</label>
+              <select class="form-control" id="ddlCelula">
+                <option value="0">Selecione a Célula</option>
+                @foreach (Celula Cl in ViewBag.Celulas)
+                {
+                  <option value="@Cl.CelulaId">@Cl.Name</option>
+                }
+              </select>
             </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="form-group">
-                        <label for="tbxNomeUsuario">Nome do Usuário</label>
-                        <input id="tbxNomeUsuario" type="text" class="form-control" placeholder="Usuário de Souza">
-                    </div>
-                    <div class="form-group">
-                        <label for="tbxEmail">Endereço de email</label>
-                        <input id="tbxEmail" type="email" class="form-control" placeholder="usuario@exemplo.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="ddlCelula">Célula</label>
-                        <select class="form-control" id="ddlCelula">
-                            <option value="0">Selecione a Célula</option>
-                            @foreach (Celula Cl in ViewBag.Celulas)
-                            {
-                                <option value="@Cl.CelulaId">@Cl.Name</option>
-                            }
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group col-2 align-self-end">
+              <button id="btnNovaCelula" type="button" class="btn btn-success btn-icon" data-toggle="modal" data-target="#ModalNewCelula">
+                <i class="material-icons">add</i>
+              </button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Refazer();">Fechar</button>
-                <button id="btnCadastrarAlterar" type="button" class="btn btn-primary" onclick="CadastrarUsuario();">Cadastrar Usuário</button>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Refazer();">Fechar</button>
+        <button id="btnCadastrarAlterar" type="button" class="btn btn-primary" onclick="CadastrarUsuario();">Cadastrar Usuário</button>
+      </div>
     </div>
+  </div>
+</div>
+
+
+
+<!-------------------------------- MODAL CELULA ----------------------------------->
+<div class="modal fade" id="ModalNewCelula" tabindex="-1" role="dialog" aria-labelledby="ModalNewCelulaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalNewUserLabel">Nova Célula</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="form-group">
+            <label for="tbxNomeCelula">Nome da Célula</label>
+            <input id="tbxNomeCelula" type="text" class="form-control" placeholder="UFC - Unico foco é Cristo">
+          </div>
+          <div class="form-group">
+            <label for="ddlDiaSemana">Dia da Semana</label>
+            <select class="form-control" id="ddlDiaSemana">
+              <option value="99">Selecione</option>
+              <option value="0">Domingo</option>
+              <option value="1">Segunda-Feira</option>
+              <option value="2">Terça-Feira</option>
+              <option value="3">Quarta-Feira</option>
+              <option value="4">Quinta-Feira</option>
+              <option value="5">Sexta-Feira</option>
+              <option value="6">Sábado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tbxHorario">Horário</label>
+            <input id="tbxHorario" type="time" class="form-control" placeholder="14:00">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="RefazerCelula();">Fechar</button>
+        <button id="btnCadastrarCelula" type="button" class="btn btn-primary" onclick="CadastrarCelula();">Cadastrar Célula</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
-    .margem-top-25 {
-        margin-top: 25px;
-    }
+  .margem-top-25 {
+    margin-top: 25px;
+  }
 </style>
 
 <script>
@@ -197,14 +249,25 @@
 
     function Refazer() {
         $("#ModalNewUserLabel").text("Novo Usuário");
-        $("#btnCadastrarAlterar").text("Cadastrar Usuário");
+      $("#btnCadastrarCelula").text("Cadastrar Usuário");
         id = 0;
         status = 0;
         tbxEmail.value = "";
         tbxNomeUsuario.value = "";
         pessoaId = 0;
         $("#ddlCelula option:selected").val(0);
-    }
+  }
+
+  function RefazerCelula() {
+
+    $("#ModalNewUserCelula").text("Nova Célula");
+    $("#btnCadastrarCelula").text("Cadastrar Célula");
+    id = 0;
+    status = 0;
+    tbxNomeCelula.value = "";
+    tbxHorario.value = "";
+    $("#ddlDiaSemana option:selected").val(99);
+  }
 
     function ConverterStatus(status) {
         switch (status) {
@@ -221,6 +284,43 @@
                 return 3;
                 break;
         }
+  }
+
+      function CadastrarCelula() {
+
+        var url = "@Url.Action("CadastrarCelula", "Celulas")";
+        var Cl = {
+            CelulaId: id,
+            Name: $("#tbxNomeCelula").val(),
+            Dia: $("#ddlDiaSemana option:selected").val(),
+            Horario: $("#tbxHorario").val()
+        };
+
+        ProgressBar();
+        $.post(url, Cl, CadastrarCelulaPos);
+    }
+
+    function CadastrarCelulaPos(result) {
+        StopProgressBar();
+
+        $("#ModalNewCelula").modal('hide');
+
+        if (result.indexOf("[ERRO]") == -1) {
+          alertify.alert('Célula Cadastrada', 'A célula foi cadastrado com sucesso!');
+
+          var id = $(result).attr('id');
+
+          var text = $($(result).find("td")[0]).text();
+
+          var option = "<option value='" + id + "'>" + text + "</option>";
+
+          $("#ddlCelula").html($("#ddlCelula").html() + option);
+        }
+        else {
+            alertify.alert('Erro ao cadastrar Célula.', result);
+        }
+
+      RefazerCelula();
     }
 
 
