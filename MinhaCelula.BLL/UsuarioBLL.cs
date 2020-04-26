@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MinhaCelula.DAL.DAL;
 using MinhaCelula.Model;
 
@@ -10,8 +8,18 @@ namespace MinhaCelula.BLL
 {
     public class UsuarioBLL
     {
+
+        public Usuario GetUsuarioById(int userId)
+        {
+            return new UsuarioDAL().GetUsuarioById(userId);
+        }
+
         public void CriarAlterarUsuario(Usuario Us)
         {
+            Random random = new Random();
+            const string chars = "abcdefghijklmnozABCDEFGHIJKLMNOZ1234567890@#$%&*!";
+            Us.Password = new string(Enumerable.Repeat(chars, 10).Select(s => s[random.Next(s.Length)]).ToArray());
+
             new UsuarioDAL().CriarAlterarUsuario(Us);
         }
 
@@ -22,7 +30,7 @@ namespace MinhaCelula.BLL
 
             foreach (Usuario Us in Users)
             {
-                Pessoa p = People.Where(P => P.PessoaId == Us.PessoaId).Single();
+                Pessoa p = People.Single(P => P.PessoaId == Us.PessoaId);
                 Us.Nome = p.Name;
                 Us.PessoaId = p.PessoaId;
             }
@@ -30,13 +38,12 @@ namespace MinhaCelula.BLL
             return Users;
         }
 
-
         public IEnumerable<Usuario> GetAllUsers()
         {
             return new UsuarioDAL().GetAllUsers();
         }
 
-            public string RemoverUsuario(int UsuarioId)
+        public string RemoverUsuario(int UsuarioId)
         {
             string success = string.Empty;
 

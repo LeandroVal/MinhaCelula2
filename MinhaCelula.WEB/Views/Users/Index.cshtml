@@ -140,6 +140,7 @@
             if (id == 0) {
                 alertify.alert('Usuario Cadastrado', 'O usuário foi cadastrado com sucesso!');
                 $("#tbodyUsuarios").html($("#tbodyUsuarios").html() + result);
+                EnviarEmail(result);
             }
             else {
                 alertify.alert('Informações Alteradas', 'As informações de usuário foram alteradas com sucesso!');
@@ -152,6 +153,11 @@
         }
 
         Refazer();
+    }
+
+    function EnviarEmail(result) {
+        /////Pegar o id no reslt do usuariopos na segunda th
+        result.find()
     }
 
     function EditarUsuario(element) {

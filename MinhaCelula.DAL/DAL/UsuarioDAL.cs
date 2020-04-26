@@ -10,6 +10,14 @@ namespace MinhaCelula.DAL.DAL
 {
     public class UsuarioDAL
     {
+        public Usuario GetUsuarioById(int userId)
+        {
+            using (DatabaseContext contexto = new DatabaseContext())
+            {
+                return contexto.Usuarios.Find(userId);
+            }
+        }
+
         public void NovoUsuario(Usuario Us)
         {
             using (DatabaseContext contexto = new DatabaseContext())
